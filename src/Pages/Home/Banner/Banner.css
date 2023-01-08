@@ -20,7 +20,6 @@
     border-radius: 8px;
 }
 .my-btn:hover{
-    background: #22d3ee;
     color: white;
     transition: .5s;
 }

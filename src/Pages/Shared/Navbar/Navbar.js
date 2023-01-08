@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import rnrLogo from "../../../assets/rnr-logo.png";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+    .then(() => {})
+    .catch(error => console.error(error))
+  }
+
+  const menuItems = <React.Fragment>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to=''>About Us</Link>
+            </li>
+            <li>
+              <Link to=''>Contact Us</Link>
+            </li>
+            {
+              user?.uid ? 
+              <li>
+              <button onClick={handleLogOut} >Sign Out</button>
+              </li>
+              :
+              <li>
+              <Link to='/login'>Login</Link>
+              </li>
+            }
+  </React.Fragment>
   return (
     <div className="navbar bg-base-100 justify-between">
       <div className="navbar-start">
@@ -27,18 +57,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li className="mb-2">
-              <Link to='/'>Home</Link>
-            </li>
-            <li className="mb-2">
-              <Link to=''>About Us</Link>
-            </li>
-            <li className="mb-2">
-              <Link to=''>Contact Us</Link>
-            </li>
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>
+            {menuItems}
           </ul>
         </div>
         <Link to="/">
@@ -47,18 +66,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className="mr-2">
-            <Link to='/'>Home</Link>
-          </li>
-          <li className="mr-2">
-            <Link to=''>About Us</Link>
-          </li>
-          <li className="mr-2">
-            <Link to=''>Contact Us</Link>
-          </li>
-          <li>
-            <Link to='/login'>Login</Link>
-          </li>
+          {menuItems}
         </ul>
       </div>
     </div>

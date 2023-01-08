@@ -21,7 +21,7 @@ const Banner = () => {
                 </h1>
                 <p className='text-white my-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam harum pariatur aliquid aut<br/> incidunt libero quia, qui tempora! Magnam dicta dolorum cumque veniam aliquam vitae!</p>
 
-                <button className='my-btn uppercase mt-3'>Enroll Now</button>
+                <button className='my-btn uppercase mt-3 hover:bg-gradient-to-t from-cyan-400 to-sky-600'>Enroll Now</button>
             </div>
         </div>
     );
